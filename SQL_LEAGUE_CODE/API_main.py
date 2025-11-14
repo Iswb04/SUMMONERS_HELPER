@@ -9,6 +9,8 @@ app.include_router(advantages_router)
 
 
 # uvicorn SQL_LEAGUE.API_main:app --reload
+# pyinstaller --onefile --noconsole --icon="icone_lol.ico" league_view.py
+
 
 # http://127.0.0.1:8000/counters
 # http://127.0.0.1:8000/advantages
