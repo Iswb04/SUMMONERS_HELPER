@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from SQL_LEAGUE.API_counter import router as counters_router
-from SQL_LEAGUE.API_advantage import router as advantages_router
+from SQL_LEAGUE_CODE.API_counter import router as counters_router
+from SQL_LEAGUE_CODE.API_advantage import router as advantages_router
 
 app = FastAPI()
 
