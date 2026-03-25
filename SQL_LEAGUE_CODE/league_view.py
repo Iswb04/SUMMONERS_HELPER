@@ -32,9 +32,9 @@ class LeagueApp(tk.Tk):
     def create_widgets(self):
         title_label = tk.Label(
             self,
-            text="Banco de Campeões",
+            text="CHAMPION DATABASE",
             font=("Arial", 18, "bold"),
-            fg="#F2AA4C",
+            fg="#FFFFFF",
             bg="#18293B"
         )
         title_label.pack(pady=15)
@@ -42,10 +42,10 @@ class LeagueApp(tk.Tk):
         search_frame = tk.Frame(self, bg="#101820")
         search_frame.pack(pady=10)
 
-        tk.Label(search_frame, text="Buscar Campeão:", fg="white", bg="#101820").pack(side=tk.LEFT, padx=5)
+        tk.Label(search_frame, text="Search Champion:", fg="white", bg="#101820").pack(side=tk.LEFT, padx=5)
         self.search_entry = tk.Entry(search_frame, width=30)
         self.search_entry.pack(side=tk.LEFT, padx=5)
-        ttk.Button(search_frame, text="Buscar", command=self.search_champion).pack(side=tk.LEFT)
+        ttk.Button(search_frame, text="Search", command=self.search_champion).pack(side=tk.LEFT)
 
         self.search_entry.bind("<Return>", lambda event: self.search_champion())
 
@@ -57,9 +57,9 @@ class LeagueApp(tk.Tk):
         )
 
         # Cabeçalhos normais
-        self.tree.heading("name", text="Nome")
-        self.tree.heading("title", text="Título")
-        self.tree.heading("tags", text="Funções")
+        self.tree.heading("name", text="Name")
+        self.tree.heading("title", text="Title")
+        self.tree.heading("tags", text="Tags")
 
         # Criar quadradinhos coloridos para as colunas
         # Vermelho (counter)
