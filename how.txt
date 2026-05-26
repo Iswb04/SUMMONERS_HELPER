@@ -1,0 +1,28 @@
+ 1. Instalar Dependências
+  Certifique-se de ter as bibliotecas necessárias instaladas:
+   1 pip install requests customtkinter fastapi uvicorn
+
+  2. Iniciar a API (Servidor Local)
+  A interface depende da API para obter informações de counters e
+  vantagens.
+  Abra um terminal e execute:
+   1 cd league_code
+   2 uvicorn API_main:app --reload
+  Mantenha este terminal aberto! Se você fechá-lo, o banco de dados não
+  poderá ser populado corretamente.
+
+  3. Popular o Banco de Dados (Opcional se já tiver o db.sqleague)
+  Se o seu arquivo db.sqleague estiver vazio ou não existir, rode o script  de população em um novo terminal:
+   1 cd league_code
+   2 python league_main.py
+
+  4. Iniciar a Interface Gráfica
+  Com a API rodando (ou o banco já populado), inicie o aplicativo:
+   1 cd league_code
+   2 python league_view.py
+
+  ---
+  Dicas de Solução de Problemas:
+   - ConnectionRefusedError: Isso significa que você tentou rodar o
+     league_main.py sem que o uvicorn estivesse rodando. Volte ao passo 2.   - Módulos Faltando: Se der erro de "ModuleNotFoundError", rode o
+     comando de instalação do passo 1.

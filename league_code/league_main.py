@@ -37,8 +37,14 @@ if __name__ == '__main__':
     get_url.raise_for_status()
     champions = get_url.json()['data']
 
-    local_counters = requests.get(COUNTER_URL).json() # dicionario da api local
-    local_advantages = requests.get(ADVANTAGE_URL).json() # dicionario da api local
+    try:
+        local_counters = requests.get(COUNTER_URL).json() # dicionario da api local
+        local_advantages = requests.get(ADVANTAGE_URL).json() # dicionario da api local
+    except requests.exceptions.ConnectionError:
+        print("\n[ERRO] Não foi possível conectar à API local (http://127.0.0.1:8000).")
+        print("Certifique-se de que o servidor está rodando com: uvicorn API_main:app --reload")
+        connection.close()
+        exit(1)
 
     for champ_info in champions.values():
         name = champ_info["name"]
