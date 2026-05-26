@@ -1,6 +1,10 @@
 from fastapi import FastAPI
-from league_code.API_counter import router as counters_router
-from league_code.API_advantage import router as advantages_router
+try:
+    from API_counter import router as counters_router
+    from API_advantage import router as advantages_router
+except ImportError:
+    from .API_counter import router as counters_router
+    from .API_advantage import router as advantages_router
 
 app = FastAPI()
 
@@ -8,10 +12,10 @@ app.include_router(counters_router)
 app.include_router(advantages_router)
 
 
-# uvicorn SQL_LEAGUE.API_main:app --reload
-# pyinstaller --onefile --noconsole --icon="icone_lol.ico" league_view.py
-
+# Comando para rodar (na raiz do projeto):
+# uvicorn league_code.API_main:app --reload
 
 # http://127.0.0.1:8000/counters
 # http://127.0.0.1:8000/advantages
+
 

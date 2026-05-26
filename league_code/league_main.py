@@ -20,19 +20,25 @@ if __name__ == '__main__':
     connection = sqlite3.connect(DB_FILE)
     cursor = connection.cursor()
 
+    # REMOVE A TABELA ANTIGA PARA GARANTIR QUE O NOVO FORMATO SEJA APLICADO
+    print("[INFO] Resetando banco de dados...")
+    cursor.execute(f"DROP TABLE IF EXISTS {TABLE_NAME}")
+
     cursor.execute(f'''
-        CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
+        CREATE TABLE {TABLE_NAME} (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             title TEXT,
             tags TEXT,
             counters TEXT,
-            advantages TEXT
+            advantages TEXT,
+            image_full TEXT,
+            blurb TEXT
         )               
     ''')
     connection.commit()
 
-
+    print(f"[INFO] Buscando dados da Riot (v15.9.1)...")
     get_url = requests.get(URL)
     get_url.raise_for_status()
     champions = get_url.json()['data']
@@ -52,11 +58,14 @@ if __name__ == '__main__':
         tags = ", ".join(champ_info.get("tags", []))
         counters = ", ".join(local_counters.get(name, ["Desconhecido"]))
         advantages = ", ".join(local_advantages.get(name, ["Desconhecido"]))
+        
+        image_full = champ_info["image"]["full"]
+        blurb = champ_info.get("blurb", "")
 
 
         cursor.execute(
-            f"INSERT INTO {TABLE_NAME} (name, title, tags, counters, advantages) VALUES (?, ?, ?, ?, ?)",
-            (name, title, tags, counters, advantages)
+            f"INSERT INTO {TABLE_NAME} (name, title, tags, counters, advantages, image_full, blurb) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (name, title, tags, counters, advantages, image_full, blurb)
         )
 
     connection.commit()

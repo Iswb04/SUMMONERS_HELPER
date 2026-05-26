@@ -1,0 +1,49 @@
+# GUIA DE INICIALIZAÇÃO - SUMMONERS HELPER (v15.9.1)
+
+Siga estes passos na ordem exata para rodar o projeto corretamente:
+
+---
+
+## 1. Instalar as Bibliotecas Necessárias
+Se ainda não instalou, abra o terminal e rode:
+```bash
+pip install requests customtkinter fastapi uvicorn Pillow
+```
+
+---
+
+## 2. Ligar o Servidor da API (Backend)
+O aplicativo precisa da API local para funcionar. 
+Abra um terminal na pasta RAIZ do projeto e rode:
+```bash
+uvicorn league_code.API_main:app --reload
+```
+⚠️ **IMPORTANTE:** Mantenha este terminal aberto o tempo todo!
+
+---
+
+## 3. Atualizar/Popular o Banco de Dados
+Sempre que o código for atualizado ou se for a sua primeira vez, rode o script abaixo.
+Abra um SEGUNDO terminal e rode:
+```bash
+python league_code/league_main.py
+```
+Isso vai baixar as imagens e descrições da versão 15.9.1 da Riot.
+
+---
+
+## 4. Abrir a Interface Gráfica
+Agora você pode abrir o programa bonitão com o hover de imagens:
+No terminal, rode:
+```bash
+python league_code/league_view.py
+```
+
+---
+
+### Dicas Importantes:
+- **Hover de Imagem**: Passe o mouse sobre o NOME do campeão para ver a foto, título e descrição.
+- **Erro de Conexão**: Se aparecer "API desligada", verifique se o terminal do Passo 2 ainda está rodando.
+- **Dados Incompletos**: Se o hover não mostrar a imagem, certifique-se de que rodou o Passo 3 ATÉ O FINAL.
+
+Divirta-se!
