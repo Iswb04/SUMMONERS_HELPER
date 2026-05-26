@@ -29,7 +29,7 @@ class LeagueApp(ctk.CTk):
         self.resizable(False, False)
 
         self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(2, weight=1)
+        self.grid_rowconfigure(3, weight=1) # O peso deve estar na lista (row 3)
 
         print(f"[DEBUG] Banco de dados procurado em: {DB_FILE}")
 
@@ -43,22 +43,22 @@ class LeagueApp(ctk.CTk):
             text="SUMMONERS HELPER",
             font=ctk.CTkFont(size=24, weight="bold")
         )
-        self.title_label.grid(row=0, column=0, pady=(20, 10))
+        self.title_label.grid(row=0, column=0, pady=(10, 0))
 
         # Frame de Busca
         self.search_frame = ctk.CTkFrame(self)
-        self.search_frame.grid(row=1, column=0, padx=20, pady=10, sticky="ew")
+        self.search_frame.grid(row=1, column=0, padx=20, pady=(10, 5), sticky="ew")
         self.search_frame.grid_columnconfigure(1, weight=1)
 
         self.search_label = ctk.CTkLabel(self.search_frame, text="Buscar Campeão:")
-        self.search_label.grid(row=0, column=0, padx=(15, 5), pady=10)
+        self.search_label.grid(row=0, column=0, padx=(15, 5), pady=8)
 
         self.search_entry = ctk.CTkEntry(self.search_frame, placeholder_text="Digite o nome...")
-        self.search_entry.grid(row=0, column=1, padx=5, pady=10, sticky="ew")
+        self.search_entry.grid(row=0, column=1, padx=5, pady=8, sticky="ew")
         self.search_entry.bind("<Return>", lambda event: self.search_champion())
 
         self.search_button = ctk.CTkButton(self.search_frame, text="Buscar", command=self.search_champion)
-        self.search_button.grid(row=0, column=2, padx=(5, 15), pady=10)
+        self.search_button.grid(row=0, column=2, padx=(5, 15), pady=8)
 
         # Estilização da Treeview
         style = ttk.Style()
@@ -72,15 +72,12 @@ class LeagueApp(ctk.CTk):
                         borderwidth=0)
         style.map('Treeview', background=[('selected', '#1f538d')])
         
-        # Esconder COMPLETAMENTE os cabeçalhos originais da Treeview para não ocuparem espaço
+        # Esconder COMPLETAMENTE os cabeçalhos originais da Treeview
         style.layout("Treeview.Heading", []) 
 
         # Frame para os Cabeçalhos Customizados
         self.header_frame = ctk.CTkFrame(self, fg_color="#333333", height=30, corner_radius=0)
-        self.header_frame.grid(row=2, column=0, padx=(20, 36), pady=(10, 0), sticky="ew") 
-        
-        # Definição das larguras das colunas
-        col_widths = [90, 180, 120, 210, 210]
+        self.header_frame.grid(row=2, column=0, padx=(20, 36), pady=(5, 0), sticky="ew") 
         
         # Nome
         ctk.CTkLabel(self.header_frame, text="Nome", width=90, anchor="w", font=ctk.CTkFont(weight="bold")).grid(row=0, column=0, padx=(5,0))
@@ -104,11 +101,10 @@ class LeagueApp(ctk.CTk):
         self.tree = ttk.Treeview(
             self.tree_frame,
             columns=("name", "title", "tags", "counters", "advantages"),
-            show="headings", # Mantemos headings mas o estilo remove o desenho deles
+            show="headings",
             style="Treeview"
         )
 
-        # Cabeçalhos invisíveis (apenas para definir colunas)
         for col in ("name", "title", "tags", "counters", "advantages"):
             self.tree.heading(col, text="")
 
@@ -125,8 +121,8 @@ class LeagueApp(ctk.CTk):
         self.scrollbar.grid(row=0, column=1, sticky="ns")
 
         # Botão Listar Todos
-        self.list_all_button = ctk.CTkButton(self, text="Voltar", command=self.load_all)
-        self.list_all_button.grid(row=4, column=0, pady=(10, 20))
+        self.list_all_button = ctk.CTkButton(self, text="Listar Todos", command=self.load_all)
+        self.list_all_button.grid(row=4, column=0, pady=(5, 15))
 
     def search_champion(self):
         name = self.search_entry.get().strip()
