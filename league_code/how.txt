@@ -33,7 +33,7 @@ Isso vai baixar as imagens e descrições da versão 15.9.1 da Riot.
 ---
 
 ## 4. Abrir a Interface Gráfica
-Agora você pode abrir o programa bonitão com o hover de imagens:
+Agora você pode abrir o programa bonitão:
 No terminal, rode:
 ```bash
 python league_code/league_view.py
@@ -42,8 +42,8 @@ python league_code/league_view.py
 ---
 
 ### Dicas Importantes:
-- **Hover de Imagem**: Passe o mouse sobre o NOME do campeão para ver a foto, título e descrição.
+- **Exibir Imagem**: Clique na LINHA do campeão para ver a foto, título e descrição. Clique novamente na mesma linha para esconder.
 - **Erro de Conexão**: Se aparecer "API desligada", verifique se o terminal do Passo 2 ainda está rodando.
-- **Dados Incompletos**: Se o hover não mostrar a imagem, certifique-se de que rodou o Passo 3 ATÉ O FINAL.
+- **Dados Incompletos**: Se não mostrar a imagem ao clicar, certifique-se de que rodou o Passo 3 ATÉ O FINAL.
 
 Divirta-se!
